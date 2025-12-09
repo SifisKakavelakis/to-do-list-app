@@ -6,6 +6,7 @@ import java.util.List;
 public class Task {
 
     private long id;
+    private static long counter = 1;
     private String title;
     private String description;
     private LocalDateTime dueDate;
@@ -17,9 +18,9 @@ public class Task {
 
     }
 
-    public Task(long id, String title, String description, LocalDateTime dueDate,
+    public Task( String title, String description, LocalDateTime dueDate,
                 boolean completed, List<String> tags, Priority priority) {
-        this.id = id;
+        this.id = counter++;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;

@@ -11,8 +11,7 @@ import java.util.Scanner;
 
 public class TaskService {
 
-    public Task addTask(long id, String title, String description, LocalDateTime dueDate, boolean completed,
-                           List<String> tags, Priority priority) throws Exception {
+    public Task addTask() throws Exception {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -27,9 +26,9 @@ public class TaskService {
         LocalDateTime dueDateParsed = null;
         while (dueDateParsed == null) {
             System.out.println("Please enter due date (yyyy-MM-dd HH:mm): ");
-            String dueDateString = scanner.nextLine();
+            String dueDateInput = scanner.nextLine();
             try {
-                dueDateParsed = LocalDateTime.parse(dueDateString, formatter);
+                dueDateParsed = LocalDateTime.parse(dueDateInput, formatter);
             } catch (Exception e) {
                 System.out.println("Invalid date format! Please try again.");
             }
@@ -66,7 +65,7 @@ public class TaskService {
             }
         }
 
-        Task task = new Task(id, titleInput, descriptionInput, dueDateParsed, completedInput,
+        Task task = new Task(titleInput, descriptionInput, dueDateParsed, completedInput,
                 tagsList, priorityEnum);
 
         return task;
