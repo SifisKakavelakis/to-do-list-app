@@ -18,7 +18,7 @@ public class Task {
 
     }
 
-    public Task( String title, String description, LocalDateTime dueDate,
+    public Task( long id, String title, String description, LocalDateTime dueDate,
                 boolean completed, List<String> tags, Priority priority) {
         this.id = counter++;
         this.title = title;
@@ -84,4 +84,28 @@ public class Task {
     public void setPriority(Priority priority) {
         this.priority = priority;
     }
+
+    @Override
+    public String toString() {
+        String formattedDate = "No date set";
+        if (dueDate != null) {
+            formattedDate = dueDate.toString().replace("T", " ");
+        }
+
+        String tagsFormatted = "None";
+        if (tags != null && !tags.isEmpty()) {
+            tagsFormatted = String.join(", ", tags);
+        }
+
+        return  "------------------------------\n" +
+                "Task ID: " + id + "\n" +
+                "Title: " + title + "\n" +
+                "Description: " + description + "\n" +
+                "Due Date: " + formattedDate + "\n" +
+                "Completed: " + (completed ? "Yes" : "No") + "\n" +
+                "Tags: " + tagsFormatted + "\n" +
+                "Priority: " + priority + "\n" +
+                "------------------------------";
+    }
+
 }
